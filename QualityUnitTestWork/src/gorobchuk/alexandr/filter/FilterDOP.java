@@ -10,7 +10,8 @@ public class FilterDOP {
     private final Integer questionsSubCategory;
     private final Calendar dataStart;
     private final Calendar dataEnd;
-//Comment
+//Comment еще один
+    //Comment еще один
     public FilterDOP(Integer service, Integer serviceVariations, Integer questionsType, Integer questionsCategory, Integer questionsSubCategory, Calendar dataStart, Calendar dataEnd) {
         this.service = service;
         this.serviceVariations = serviceVariations;
