@@ -9,13 +9,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import gorobchuk.alexandr.InitialConstant;
-import gorobchuk.alexandr.ResponseType;
 import gorobchuk.alexandr.add.waitingtimeline.WaitingTimeline;
 import gorobchuk.alexandr.add.waitingtimeline.WaitingTimelineList;
 
 public class ResultFilter {
-    FilterDOP filterDop;
-    List<WaitingTimeline> listTimeline;
+    private FilterDOP filterDop;
+    private List<WaitingTimeline> listTimeline;
     private String result;
 
     public ResultFilter(String filter) {
@@ -195,4 +194,5 @@ public class ResultFilter {
     public String getResult() {
         return result;
     }
+
 }
