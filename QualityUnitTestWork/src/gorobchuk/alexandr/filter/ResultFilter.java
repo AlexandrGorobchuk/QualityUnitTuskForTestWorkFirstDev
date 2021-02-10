@@ -16,7 +16,7 @@ import gorobchuk.alexandr.add.waitingtimeline.WaitingTimelineList;
 public class ResultFilter {
     FilterDOP filterDop;
     List<WaitingTimeline> listTimeline;
-    String result;
+    private String result;
 
     public ResultFilter(String filter) {
         String[] params = filter.split(" ");
@@ -29,7 +29,7 @@ public class ResultFilter {
         Integer questionType = setValue(temp, 0, "Question Type", InitialConstant.MAXQUESTIONS);
         Integer questionCategory = setValue(temp, 1, "Question Category", InitialConstant.MAXQUESTIONSCATEGORY);
         Integer questionSubCategory = setValue(temp, 2, "Question SubCategory", InitialConstant.MAXQUESTIONSSUBCATEGORY);
-//      ResponseType responseType = setResponseType(params[3]);
+
         temp = params[4].split("-");
         Calendar dateStart = setCalendar(temp, 0);
         Calendar dateEnd = setCalendar(temp, 1);
@@ -45,7 +45,7 @@ public class ResultFilter {
     private String get (List<WaitingTimeline> list) {
         this.listTimeline = list;
         listTimeline = startFilter(this.listTimeline);
-        listTimeline.stream().forEach(x-> System.out.println(x));
+//        listTimeline.stream().forEach(x-> System.out.println(x));
         return setResult();
 
     }

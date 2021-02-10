@@ -1,6 +1,7 @@
 package gorobchuk.alexandr;
 
 import gorobchuk.alexandr.add.waitingtimeline.WaitingTimelineList;
+import gorobchuk.alexandr.filter.ResultFilter;
 
 public class Application {
 
@@ -10,7 +11,10 @@ public class Application {
         WaitingTimelineList.addList("C 1.1 5.5.1 P 01.11.2012 117");
         WaitingTimelineList.addList("C 3 10.2 N 02.01.2012 100");
         
-        WaitingTimelineList.getList().stream().forEach(x->System.out.println(x));;
+//        WaitingTimelineList.getList().stream().forEach(x->System.out.println(x));
+        
+        ResultFilter filter = new ResultFilter("D 3 * P 29.02.2012-01.12.2012");
+        System.out.println(filter.getResult());
     }
 
 }
