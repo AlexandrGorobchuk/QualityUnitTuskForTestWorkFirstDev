@@ -19,23 +19,28 @@ public class WaitingTimelineList {
     }
 
     public static void addList(String input){
-        String[] params = input.split(" ");
-        validateAddedObject(params);
+        try {
+            String[] params = input.split(" ");
+            validateAddedObject(params);
 
-        String[] temp = params[1].split("\\.");
-        Integer service = setValue(temp, 0, "Service", InitialConstant.MAXSERVICE);
-        Integer serviceVariations = setValue(temp, 1, "Service Variations", InitialConstant.MAXVARIATION);
+            String[] temp = params[1].split("\\.");
+            Integer service = setValue(temp, 0, "Service", InitialConstant.MAXSERVICE);
+            Integer serviceVariations = setValue(temp, 1, "Service Variations", InitialConstant.MAXVARIATION);
 
-        temp = params[2].split("\\.");
-        Integer questionType = setValue(temp, 0, "Question Type", InitialConstant.MAXQUESTIONS);
-        Integer questionCategory = setValue(temp, 1, "Question Category", InitialConstant.MAXQUESTIONSCATEGORY);
-        Integer questionSubCategory = setValue(temp, 2, "Question SubCategory", InitialConstant.MAXQUESTIONSSUBCATEGORY);
+            temp = params[2].split("\\.");
+            Integer questionType = setValue(temp, 0, "Question Type", InitialConstant.MAXQUESTIONS);
+            Integer questionCategory = setValue(temp, 1, "Question Category", InitialConstant.MAXQUESTIONSCATEGORY);
+            Integer questionSubCategory = setValue(temp, 2, "Question SubCategory", InitialConstant.MAXQUESTIONSSUBCATEGORY);
 
-        ResponseType responseType = setResponseType(params[3]);
-        Calendar date = setCalendar(params[4]);
-        Integer time = setTime(params[5]);
-
-        list.add(new WaitingTimeline(service, serviceVariations, questionType, questionCategory, questionSubCategory, responseType, date, time));
+            ResponseType responseType = setResponseType(params[3]);
+            Calendar date = setCalendar(params[4]);
+            Integer time = setTime(params[5]);
+            list.add(new WaitingTimeline(service, serviceVariations, questionType, questionCategory, questionSubCategory, responseType, date, time));
+        } catch (Exception e) {
+            System.err.println("Error in method addList. Added parametrs dont match Template:");
+            System.err.println("C service_id[.variation_id] question_type_id[.category_id.[sub-category_id]] P/N date time");
+            e.printStackTrace();  
+        }
     }
 
     private static Integer setValue(String[] input, int position, String nameVariable, InitialConstant cons){
@@ -125,7 +130,6 @@ public class WaitingTimelineList {
             throw new IllegalArgumentException("Added Object to list WaitingTimelineList Must Be C (" + Arrays.toString(params) + ")" );
         }
 
-        ResponseType responseType;
         if (!params[3].equals("P") && !params[3].equals("N")) {
             throw new IllegalArgumentException("Response Type Must Be N/P (" + Arrays.toString(params) + ")");
         }
